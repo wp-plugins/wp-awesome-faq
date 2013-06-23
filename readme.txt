@@ -14,7 +14,6 @@ No need extra configurations for WP Awesome FAQ Plugin. WP Awesome FAQ Plugin al
 
 = Features Included =
 * WP Awesome FAQ Plugin includes- Title, Description.
-* Filterable FAQ Plugin.
 * No Post Description Limits.
 * Many more settings are comming!!!
 
