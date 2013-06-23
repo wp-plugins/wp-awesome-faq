@@ -12,8 +12,7 @@ Best WordPress FAQ Plugin integrated with Custom Post Type. WP Awesome FAQ comes
 == Description ==
 No need extra configurations for WP Awesome FAQ Plugin. WP Awesome FAQ Plugin allows to create unlimited FAQ Items with Title, Description. With the plugin installation's a Custom Post Type named "FAQ" will be created automatically. A shortcode [faq] needed, just crate a page for your FAQ section and update the page.
 
-
-=Features Included=
+= Features Included =
 * WP Awesome FAQ Plugin includes- Title, Description.
 * Filterable FAQ Plugin.
 * No Post Description Limits.
@@ -22,13 +21,10 @@ No need extra configurations for WP Awesome FAQ Plugin. WP Awesome FAQ Plugin al
 = About the Author =
 A product by H2CWEB.NET [WordPress Team](http://h2cweb.net).
 
-
 = Problems and Support =
 To get faster response You can drop a mail in our website [Contact Page](http://h2cweb.net/contact-us/). If you have any query about WP Awesome FAQ Plugin then please check our [F.A.Q](Will include after the plugin approved). 
 
-
 = Comments, Feedback and Request Features =
-
 Please give your valueable suggestions, comments, and feedbacks about this plugin or, any ideas about WordPress Plugin just drop a [message to us](http://h2cweb.net/contact-us). We are waiting for hearing from you!!!
 
 
