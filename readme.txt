@@ -45,11 +45,11 @@ This plugin is licensed under the [Apache License, Version 2.0](http://www.apach
 
 
 == Changelog ==
-
-= 1.0 =
-* Initial Release
 = 1.1 =
 * Resolved auto collapse FAQ.
+= 1.0 =
+* Initial Release
+
 
 
 == Frequently Asked Questions ==
