@@ -61,7 +61,7 @@ wp_enqueue_script('h2cweb-custom-js');
 }
 // Getting FAQs from WordPress FAQ Manager plugin's custom post type questions
 $posts = get_posts(array(  
-'numberposts' => 10,
+'numberposts' => -1,
 'orderby' => 'menu_order',
 'order' => 'ASC',
 'post_type' => 'faq',
