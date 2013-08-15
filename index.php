@@ -3,7 +3,7 @@
 Plugin Name: WP Awesome FAQ
 Plugin URI: http://h2cweb.net
 Description:Accordion based awesome WordPress FAQ. 
-Version: 1.0
+Version: 1.1
 Author: Liton Arefin
 Author URI: http://www.h2cweb.net
 License: GPL2
