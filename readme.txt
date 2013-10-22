@@ -3,8 +3,8 @@ Contributors: H2CWEB Team
 Donate link: http://liton-online.com/donate
 Tags: WordPress, WordPress FAQ, Frequently asked questions,WordPress Plugin
 Requires at least: 3.0
-Tested up to: 3.5.1
-Stable tag: 1.1
+Tested up to: 3.6.1
+Stable tag: 1.2
 
 	
 Best WordPress FAQ Plugin integrated with Custom Post Type. WP Awesome FAQ comes with accordion based JQuery UI. 
@@ -15,6 +15,8 @@ No need extra configurations for WP Awesome FAQ Plugin. WP Awesome FAQ Plugin al
 = Features Included =
 * WP Awesome FAQ Plugin includes- Title, Description.
 * No Post Description Limits.
+* Category based FAQ (very much requested feature !!!).
+* Window resize auto height.
 * Many more settings are comming!!!
 
 = About the Author =
@@ -35,7 +37,7 @@ This plugin is licensed under the [Apache License, Version 2.0](http://www.apach
 *  From WordPress Dashboard go to "Plugins>> Add New>> Uploads", select 'wp-awesome-faq.zip' file and upload it. Or,
 *  Extract the zip file, copy and paste to the 'wp-conten/plugins/' directory of your WordPress Installation. 
 *  Activate the plugin.
-*  Create a new page named it "FAQ". In the editor place this shortcode [faq]
+*  Create a new page named it "FAQ". In the Editor place this shortcode [faq]
 
 
 == Screenshots ==
@@ -45,11 +47,14 @@ This plugin is licensed under the [Apache License, Version 2.0](http://www.apach
 
 
 == Changelog ==
+
+= 1.2 =
+* FAQ Category Filter Option added.
+* Window size auto height resolved.
 = 1.1 =
 * Resolved auto collapse FAQ.
 = 1.0 =
 * Initial Release
-
 
 
 == Frequently Asked Questions ==

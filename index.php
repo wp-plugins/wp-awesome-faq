@@ -3,7 +3,7 @@
 Plugin Name: WP Awesome FAQ
 Plugin URI: http://h2cweb.net
 Description:Accordion based awesome WordPress FAQ. 
-Version: 1.1
+Version: 1.2
 Author: Liton Arefin
 Author URI: http://www.h2cweb.net
 License: GPL2
@@ -19,7 +19,7 @@ function h2cweb_faq() {
         'add_new_item'       => __( 'Add New FAQ' ),
         'edit_item'          => __( 'Edit FAQ' ),
         'new_item'           => __( 'New FAQ Items' ),
-        'all_items'          => __( 'All FAQ' ),
+        'all_items'          => __( 'All FAQ\'s' ),
         'view_item'          => __( 'View FAQ' ),
         'search_items'       => __( 'Search FAQ' ),
         'not_found'          => __( 'No FAQ Items found' ),
@@ -42,40 +42,72 @@ function h2cweb_faq() {
         'supports'      => array( 'title', 'editor'),
         'menu_icon' => get_admin_url(). '/images/press-this.png',  // Icon Path
     );
+
     register_post_type( 'faq', $args ); 
+
+        // Add new taxonomy, make it hierarchical (like categories)
+        $labels = array(
+            'name'              => _x( 'FAQ Categories', 'taxonomy general name' ),
+            'singular_name'     => _x( 'FAQ Category', 'taxonomy singular name' ),
+            'search_items'      =>  __( 'Search FAQ Categories' ),
+            'all_items'         => __( 'All FAQ Category' ),
+            'parent_item'       => __( 'Parent FAQ Category' ),
+            'parent_item_colon' => __( 'Parent FAQ Category:' ),
+            'edit_item'         => __( 'Edit FAQ Category' ),
+            'update_item'       => __( 'Update FAQ Category' ),
+            'add_new_item'      => __( 'Add New FAQ Category' ),
+            'new_item_name'     => __( 'New FAQ Category Name' ),
+            'menu_name'         => __( 'FAQ Category' ),
+        );
+    
+        register_taxonomy('faq_cat',array('faq'), array(
+            'hierarchical' => true,
+            'labels'       => $labels,
+            'show_ui'      => true,
+            'query_var'    => true,
+            'rewrite'      => array( 'slug' => 'faq_cat' ),
+        ));
 }
+
 add_action( 'init', 'h2cweb_faq' );
 
 
 
 function h2cweb_accordion_shortcode() { 
 // Registering the scripts and style
-// 
 
 if(!is_admin()){
-wp_register_style('h2cweb-jquery-ui-style', 'http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css', false, null);
-wp_enqueue_style('h2cweb-jquery-ui-style');
-wp_enqueue_script('jquery-ui-core');
-wp_register_script('h2cweb-custom-js', plugins_url('/accordion.js', __FILE__ ), array('jquery-ui-accordion'), '', true);
-wp_enqueue_script('h2cweb-custom-js');
+    wp_register_style('h2cweb-jquery-ui-style', 'http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css', false, null);
+    wp_enqueue_style('h2cweb-jquery-ui-style');
+    wp_enqueue_script('jquery-ui-core');
+    wp_register_script('h2cweb-custom-js', plugins_url('/accordion.js', __FILE__ ), array('jquery-ui-accordion'), '', true);
+    wp_enqueue_script('h2cweb-custom-js');
 }
-// Getting FAQs from WordPress FAQ Manager plugin's custom post type questions
-$posts = get_posts(array(  
-'numberposts' => -1,
-'orderby' => 'menu_order',
-'order' => 'ASC',
-'post_type' => 'faq',
-));
-	
-// Generating Output 
-$faq  .= '<div id="accordion">'; //Open the container
-foreach ( $posts as $post ) { // Generate the markup for each Question
-$faq .= sprintf(('<h3><a href="">%1$s</a></h3><div>%2$s</div>'),
-$post->post_title,
-$post->post_content
-);
-}
-$faq .= '</div>'; //Close the container
-return $faq; //Return the HTML.
+
+// Getting FAQs from WordPress Awesome FAQ plugin's Custom Post Type questions
+$args = array( 'posts_per_page' => 5,  'post_type' => 'faq', 'order'=>"DESC");
+$query = new WP_Query( $args );
+
+global $faq;
+
+?>
+<div id="accordion">
+    <?php if( $query->have_posts() ) { while ( $query->have_posts() ) { $query->the_post();
+        $terms = wp_get_post_terms(get_the_ID(), 'faq_cat' );
+        $t = array();
+        foreach($terms as $term) $t[] = $term->slug;
+        echo implode(' ', $t); $t = array();
+        ?>
+
+        <h3><a href=""><?php echo get_the_title();?></a></h3><div><?php echo get_the_content();?></div>    
+
+    <?php } //end while
+} //endif ?>
+</div>
+<?php
+    //Reset the query
+wp_reset_query();
+wp_reset_postdata();
+
 }
 add_shortcode('faq', 'h2cweb_accordion_shortcode');
