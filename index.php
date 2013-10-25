@@ -3,7 +3,7 @@
 Plugin Name: WP Awesome FAQ
 Plugin URI: http://h2cweb.net
 Description:Accordion based awesome WordPress FAQ. 
-Version: 1.2
+Version: 1.3
 Author: Liton Arefin
 Author URI: http://www.h2cweb.net
 License: GPL2
@@ -71,18 +71,22 @@ function h2cweb_faq() {
 
 add_action( 'init', 'h2cweb_faq' );
 
+function h2cweb_scripts(){
+     if(!is_admin()){
+        wp_register_style('h2cweb-jquery-ui-style',plugins_url('/jquery-ui.css', __FILE__ ));
+        wp_enqueue_style('h2cweb-jquery-ui-style');
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery-ui-core');
+        wp_register_script('h2cweb-custom-js', plugins_url('/accordion.js', __FILE__ ), array('jquery-ui-accordion'),true);
+        wp_enqueue_script('h2cweb-custom-js');
+    }   
+}
+add_action( 'init', 'h2cweb_scripts' );
 
 
 function h2cweb_accordion_shortcode() { 
 // Registering the scripts and style
 
-if(!is_admin()){
-    wp_register_style('h2cweb-jquery-ui-style', 'http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css', false, null);
-    wp_enqueue_style('h2cweb-jquery-ui-style');
-    wp_enqueue_script('jquery-ui-core');
-    wp_register_script('h2cweb-custom-js', plugins_url('/accordion.js', __FILE__ ), array('jquery-ui-accordion'), '', true);
-    wp_enqueue_script('h2cweb-custom-js');
-}
 
 // Getting FAQs from WordPress Awesome FAQ plugin's Custom Post Type questions
 $args = array( 'posts_per_page' => 5,  'post_type' => 'faq', 'order'=>"DESC");
@@ -95,9 +99,9 @@ global $faq;
     <?php if( $query->have_posts() ) { while ( $query->have_posts() ) { $query->the_post();
         $terms = wp_get_post_terms(get_the_ID(), 'faq_cat' );
         $t = array();
-        foreach($terms as $term) $t[] = $term->slug;
+        foreach($terms as $term) $t[] = $term->name;
         echo implode(' ', $t); $t = array();
-        ?>
+    ?>
 
         <h3><a href=""><?php echo get_the_title();?></a></h3><div><?php echo get_the_content();?></div>    
 

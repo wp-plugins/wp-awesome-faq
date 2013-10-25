@@ -3,8 +3,8 @@ Contributors: H2CWEB Team
 Donate link: http://liton-online.com/donate
 Tags: WordPress, WordPress FAQ, Frequently asked questions,WordPress Plugin
 Requires at least: 3.0
-Tested up to: 3.6.1
-Stable tag: 1.2
+Tested up to: 3.7
+Stable tag: 1.3
 
 	
 Best WordPress FAQ Plugin integrated with Custom Post Type. WP Awesome FAQ comes with accordion based JQuery UI. 
@@ -39,15 +39,20 @@ This plugin is licensed under the [Apache License, Version 2.0](http://www.apach
 *  Activate the plugin.
 *  Create a new page named it "FAQ". In the Editor place this shortcode [faq]
 
+Installation Video Tutorial:
+[youtube http://www.youtube.com/watch?v=_R-9s1pm9ko]
 
 == Screenshots ==
 
 1. FAQ Posts lists
 2. Add New FAQ section- look and feel.
+3. New Feature Category added.
 
 
 == Changelog ==
-
+= 1.3 =
+* Important issues update - crash jQuery websites.
+* Video added for installation
 = 1.2 =
 * FAQ Category Filter Option added.
 * Window size auto height resolved.
