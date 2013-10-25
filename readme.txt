@@ -19,11 +19,14 @@ No need extra configurations for WP Awesome FAQ Plugin. WP Awesome FAQ Plugin al
 * Window resize auto height.
 * Many more settings are comming!!!
 
+Installation Video Tutorial:
+[youtube http://www.youtube.com/watch?v=_R-9s1pm9ko]
+
 = About the Author =
 A product by H2CWEB.NET [WordPress Team](http://h2cweb.net).
 
 = Problems and Support =
-To get faster response You can drop a mail in our website [Contact Page](http://h2cweb.net/contact-us/). If you have any query about WP Awesome FAQ Plugin then please check our [F.A.Q](Will include after the plugin approved). 
+To get faster response You can drop a mail in our website [Contact Page](http://h2cweb.net/contact-us/). If you have any query about WP Awesome FAQ Plugin then please check our [F.A.Q](http://wordpress.org/plugins/wp-awesome-faq/faq/). 
 
 = Comments, Feedback and Request Features =
 Please give your valueable suggestions, comments, and feedbacks about this plugin or, any ideas about WordPress Plugin just drop a [message to us](http://h2cweb.net/contact-us). We are waiting for hearing from you!!!
