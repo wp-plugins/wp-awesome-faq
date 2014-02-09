@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: WP Awesome FAQ
-Plugin URI: http://h2cweb.net
+Plugin URI: http://www.codexcoder.com
 Description:Accordion based awesome WordPress FAQ. 
-Version: 1.3
+Version: 1.4.0
 Author: Liton Arefin
-Author URI: http://www.h2cweb.net
+Author URI: http://www.codexcoder.com
 License: GPL2
 http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -89,7 +89,7 @@ function h2cweb_accordion_shortcode() {
 
 
 // Getting FAQs from WordPress Awesome FAQ plugin's Custom Post Type questions
-$args = array( 'posts_per_page' => 5,  'post_type' => 'faq', 'order'=>"DESC");
+$args = array( 'posts_per_page' => -1,  'post_type' => 'faq', 'order'=>"DESC");
 $query = new WP_Query( $args );
 
 global $faq;
