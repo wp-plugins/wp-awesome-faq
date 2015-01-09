@@ -1,17 +1,17 @@
 <?php
 /*
 Plugin Name: WP Awesome FAQ
-Plugin URI: http://www.codexcoder.com
-Description:Accordion based awesome WordPress FAQ. 
-Version: 1.4.0
+Plugin URI: http://jeweltheme.com/product/wp-awesome-faq-pro/
+Description: Accordion based Awesome WordPress FAQ Plugin
+Version: 1.4.1
 Author: Liton Arefin
-Author URI: http://www.codexcoder.com
+Author URI: http://www.jeweltheme.com
 License: GPL2
 http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 //Custom FAQ Post Type 
-function h2cweb_faq() {
+function jeweltheme_wp_awesome_faq_post_type() {
     $labels = array(
         'name'               => _x( 'FAQ', 'post type general name' ),
         'singular_name'      => _x( 'FAQ', 'post type singular name' ),
@@ -40,10 +40,12 @@ function h2cweb_faq() {
         'hierarchical'  => false,
         'menu_position' => 5,
         'supports'      => array( 'title', 'editor'),
-        'menu_icon' => get_admin_url(). '/images/press-this.png',  // Icon Path
+        //'menu_icon' => get_admin_url(). 'images/press-this.png',  // Icon Path
+        'menu_icon' => 'dashicons-welcome-write-blog'
+        //<span class="dashicons dashicons-welcome-write-blog"></span>
     );
 
-    register_post_type( 'faq', $args ); 
+    register_post_type( 'jw_faq', $args ); 
 
         // Add new taxonomy, make it hierarchical (like categories)
         $labels = array(
@@ -69,22 +71,22 @@ function h2cweb_faq() {
         ));
 }
 
-add_action( 'init', 'h2cweb_faq' );
+add_action( 'init', 'jeweltheme_wp_awesome_faq_post_type' );
 
-function h2cweb_scripts(){
+function jeweltheme_wp_faq_enqueue_scripts(){
      if(!is_admin()){
-        wp_register_style('h2cweb-jquery-ui-style',plugins_url('/jquery-ui.css', __FILE__ ));
-        wp_enqueue_style('h2cweb-jquery-ui-style');
+        wp_register_style('jeweltheme-jquery-ui-style',plugins_url('/jquery-ui.css', __FILE__ ));
+        wp_enqueue_style('jeweltheme-jquery-ui-style');
         wp_enqueue_script('jquery');
         wp_enqueue_script('jquery-ui-core');
-        wp_register_script('h2cweb-custom-js', plugins_url('/accordion.js', __FILE__ ), array('jquery-ui-accordion'),true);
-        wp_enqueue_script('h2cweb-custom-js');
+        wp_register_script('jeweltheme-custom-js', plugins_url('/accordion.js', __FILE__ ), array('jquery-ui-accordion'),true);
+        wp_enqueue_script('jeweltheme-custom-js');
     }   
 }
-add_action( 'init', 'h2cweb_scripts' );
+add_action( 'init', 'jeweltheme_wp_faq_enqueue_scripts' );
 
 
-function h2cweb_accordion_shortcode() { 
+function jeweltheme_accordion_shortcode() { 
 // Registering the scripts and style
 
 
@@ -114,4 +116,31 @@ wp_reset_query();
 wp_reset_postdata();
 
 }
-add_shortcode('faq', 'h2cweb_accordion_shortcode');
+add_shortcode('faq', 'jeweltheme_accordion_shortcode');
+
+
+
+
+/* Display a notice that can be dismissed */
+
+add_action('admin_notices', 'jeweltheme_faq_admin_notice');
+
+function jeweltheme_faq_admin_notice() {
+    global $current_user ;
+        $user_id = $current_user->ID;
+    if ( ! get_user_meta($user_id, 'jeweltheme_ignore_notice') ) {
+        echo '<div class="updated"><p>'; 
+        printf(__('Check out Premium Features of <a href="http://jeweltheme.com/product/wp-awesome-faq-pro/" target="_blank">WP Awesome FAQ</a> Plugin.  Why this Plugin is really awesome !!! | Check out other Awesome stuffs <a href="http://jeweltheme.com" target="_blank">here</a> <a style="float: right;" href="%1$s">X</a>'), '?jeweltheme_ignore=0');
+        echo "</p></div>";
+    }
+}
+add_action('admin_init', 'jeweltheme_ignore');
+
+
+function jeweltheme_ignore() {
+    global $current_user;
+        $user_id = $current_user->ID;
+        if ( isset($_GET['jeweltheme_ignore']) && '0' == $_GET['jeweltheme_ignore'] ) {
+             add_user_meta($user_id, 'jeweltheme_ignore_notice', 'true', true);
+    }
+}

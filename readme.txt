@@ -1,16 +1,16 @@
 === WP Awesome FAQ Plugin ===
-Contributors: H2CWEB Team
+Contributors: litonice13, jwthemeltd
 Donate link: http://liton-online.com/donate
 Tags: WordPress, WordPress FAQ, Frequently asked questions,WordPress Plugin
-Requires at least: 3.0
-Tested up to: 3.7
-Stable tag: 1.4.0
+Requires at least: 3.8
+Tested up to: 4.1
+Stable tag: 1.4.1
 
 	
-Best WordPress FAQ Plugin integrated with Custom Post Type. WP Awesome FAQ comes with accordion based JQuery UI. 
+Best WordPress FAQ Plugin integrated with Custom Post Type. WP Awesome FAQ comes with accordion based jQuery UI. 
 
 == Description ==
-No need extra configurations for WP Awesome FAQ Plugin. WP Awesome FAQ Plugin allows to create unlimited FAQ Items with Title, Description. With the plugin installation's a Custom Post Type named "FAQ" will be created automatically. A shortcode [faq] needed, just crate a page for your FAQ section and update the page.
+No need extra configurations for WP Awesome FAQ Plugin. WP Awesome FAQ Plugin allows to create unlimited FAQ Items with Title, Description. With the plugin installation's a Custom Post Type named "FAQ" will be created automatically. A shortcode [jw_faq] needed, just crate a page for your FAQ section and update the page.
 
 = Features Included =
 * WP Awesome FAQ Plugin includes- Title, Description.
@@ -23,13 +23,13 @@ Installation Video Tutorial:
 [youtube http://www.youtube.com/watch?v=_R-9s1pm9ko]
 
 = About the Author =
-A product by H2CWEB.NET [WordPress Team](http://h2cweb.net).
+A product by Jewel Theme [WordPress Team](http://jeweltheme.com).
 
 = Problems and Support =
-To get faster response You can drop a mail in our website [Contact Page](http://h2cweb.net/contact-us/). If you have any query about WP Awesome FAQ Plugin then please check our [F.A.Q](http://wordpress.org/plugins/wp-awesome-faq/faq/). 
+To get faster response You can drop a topic in our website [Direct Support Forum Topic](http://jeweltheme.com/support/forum/wordpress-plugins/wp-awesome-faq/). If you have any query about WP Awesome FAQ Plugin then please check our [F.A.Q](http://wordpress.org/plugins/wp-awesome-faq/faq/). 
 
 = Comments, Feedback and Request Features =
-Please give your valueable suggestions, comments, and feedbacks about this plugin or, any ideas about WordPress Plugin just drop a [message to us](http://h2cweb.net/contact-us). We are waiting for hearing from you!!!
+Please give your valueable suggestions, comments, and feedbacks about this plugin or, any ideas about WordPress Plugin just drop a [message to us](http://jeweltheme.com/support/forum/wordpress-plugins/wp-awesome-faq/). We are waiting for hearing from you!!!
 
 
 This plugin is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
@@ -53,8 +53,12 @@ Installation Video Tutorial:
 
 
 == Changelog ==
+= 1.4.1 =
+* Changed the shortcode [faq] to [jw_faq]
+* Updated with admin notices.
+* CSS bugs fixed.
 = 1.4.0 =
-Post Limit 5 to unlimited.
+* Post Limit 5 to unlimited.
 = 1.3 =
 * Important issues update - crash jQuery websites.
 * Video added for installation
@@ -76,7 +80,7 @@ Post Limit 5 to unlimited.
 Yes it does. Items are filterable multiple items in descending order.
 
 **Does WP Awesome FAQ Plugin supports shortcodes?**
-Yes, you need a shortcodes [faq] to use WP Awesome FAQ Plugin Plugin.
+Yes, you need a shortcodes [jw_faq] to use WP Awesome FAQ Plugin Plugin.
 
 ** Does WP Awesome FAQ Plugin items supports paginations? **	
 We are working on it, In next version we will include the pagination.
