@@ -3,7 +3,7 @@
 Plugin Name: WP Awesome FAQ
 Plugin URI: http://jeweltheme.com/product/wp-awesome-faq-pro/
 Description: Accordion based Awesome WordPress FAQ Plugin
-Version: 1.4.3
+Version: 1.5.0
 Author: Liton Arefin
 Author URI: http://www.jeweltheme.com
 License: GPL2
@@ -34,15 +34,13 @@ function jeweltheme_wp_awesome_faq_post_type() {
         'show_ui'       => true,
         'show_in_menu'  => true,
         'query_var'     => true,
-        'rewrite'       => true,
+        'rewrite'       => array('slug' => 'faq'),
         'capability_type'=> 'post',
         'has_archive'   => true,
         'hierarchical'  => false,
         'menu_position' => 5,
         'supports'      => array( 'title', 'editor'),
-        //'menu_icon' => get_admin_url(). 'images/press-this.png',  // Icon Path
         'menu_icon' => 'dashicons-welcome-write-blog'
-        //<span class="dashicons dashicons-welcome-write-blog"></span>
     );
 
     register_post_type( 'faq', $args ); 
@@ -86,29 +84,68 @@ function jeweltheme_wp_faq_enqueue_scripts(){
 add_action( 'init', 'jeweltheme_wp_faq_enqueue_scripts' );
 
 
-function jeweltheme_accordion_shortcode() { 
-    // Registering the scripts and style
-    ob_start();
+function jeweltheme_accordion_shortcode($atts, $content= null) { 
+    
+    extract( shortcode_atts(
+        array(
+           'id' => '',
+            'content'  => '',
+            "cat_id" => '',
+            "image" => '',
+            ), $atts )
+    );
+
+
+            // WP_Query arguments
+    $args = array (
+            'posts_per_page'        => -1,
+            'post_type'             => 'faq',
+            'p'                     => $id,
+            'tax_query' => array(
+                    array(
+                        'taxonomy' => 'faq_cat',
+                        'field'    => 'id',
+                        'terms'    => array( $cat_id ),
+                        ),
+                    ),
+
+            'order'                 =>"DESC"
+        );
 
     // Getting FAQs from WordPress Awesome FAQ plugin's Custom Post Type questions
-    $args = array( 'posts_per_page' => -1,  'post_type' => 'faq', 'order'=>"DESC");
+    //$args = array( 'posts_per_page' => -1,  'post_type' => 'faq', 'order'=>"DESC");
+
     $query = new WP_Query( $args );
+
+   // print_r($query);
+
+    ob_start();
+
 
     global $faq;
 
     ?>
     <div id="accordion">
-        <?php if( $query->have_posts() ) { while ( $query->have_posts() ) { $query->the_post();
-            $terms = wp_get_post_terms(get_the_ID(), 'faq_cat' );
-            $t = array();
-            foreach($terms as $term) $t[] = $term->name;
-            echo implode(' ', $t); $t = array();
+        <?php 
+            if( $query->have_posts() ) { while ( $query->have_posts() ) { $query->the_post();
+            // $terms = wp_get_post_terms(get_the_ID(), 'faq_cat' );
+            // $t = array();
+            // foreach($terms as $term) $t[] = $term->name;
+            // echo implode(' ', $t); $t = array();
         ?>
 
-            <h3><a href=""><?php echo get_the_title();?></a></h3><div><?php echo get_the_content();?></div>    
+            <h3><a href=""><?php the_title();?></a></h3><div>
+            <?php if($image){ ?>
+                <img src="<?php echo $image;?>">
+            <?php } ?>
+
+                <?php the_content();?></div>    
 
         <?php } //end while
-    } //endif ?>
+    } else{
+        echo "<p>No FAQ Items. Please add some Items</p>";
+        } ?>
+
     </div>
     <?php
         //Reset the query
@@ -145,4 +182,43 @@ function jeweltheme_ignore() {
         if ( isset($_GET['jeweltheme_ignore']) && '0' == $_GET['jeweltheme_ignore'] ) {
              add_user_meta($user_id, 'jeweltheme_ignore_notice', 'true', true);
     }
+}
+
+
+
+
+
+// Manage Category Shortcode Columns
+add_filter("manage_faq_cat_custom_column", 'jeweltheme_faq_cat_columns', 10, 3);
+add_filter("manage_edit-faq_cat_columns", 'jeweltheme_faq_cat_manage_columns'); 
+ 
+function jeweltheme_faq_cat_manage_columns($theme_columns) {
+    $new_columns = array(
+            'cb' => '<input type="checkbox" />',
+            'name' => __('Name'),
+            'faq_category_shortcode' => __( 'Category Shortcode', 'jeweltheme' ),
+            'slug' => __('Slug'),
+            'posts' => __('Posts')
+        );
+    return $new_columns;
+
+}
+
+
+function jeweltheme_faq_cat_columns($out, $column_name, $theme_id) {
+    $theme = get_term($theme_id, 'faq_cat');
+    switch ($column_name) {
+        
+        case 'title':
+            echo get_the_title();
+        break;
+
+        case 'faq_category_shortcode':             
+             echo '[faq cat_id="' . $theme_id. '"]';
+        break;
+ 
+        default:
+            break;
+    }
+    return $out;    
 }

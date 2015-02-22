@@ -4,7 +4,7 @@ Donate link: http://liton-online.com/donate
 Tags: WordPress, WordPress FAQ, Frequently asked questions,WordPress Plugin
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.4.3
+Stable tag: 1.5.0
 
 	
 Best WordPress FAQ Plugin integrated with Custom Post Type. WP Awesome FAQ comes with accordion based jQuery UI. 
@@ -53,6 +53,12 @@ Installation Video Tutorial:
 
 
 == Changelog ==
+= 1.5.0 =
+* Content Auto Paragraph problem fixed
+* Added specific Category Shortcode 
+* Shortcode is more powerful then before
+* Added "Category Shotcode" Manage column in FAQ Category
+
 = 1.4.3 =
 * Shortcode content alignment fixed.
 
