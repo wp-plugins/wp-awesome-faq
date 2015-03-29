@@ -97,20 +97,30 @@ function jeweltheme_accordion_shortcode($atts, $content= null) {
 
 
             // WP_Query arguments
-    $args = array (
-            'posts_per_page'        => -1,
-            'post_type'             => 'faq',
-            'p'                     => $id,
-            'tax_query' => array(
-                    array(
-                        'taxonomy' => 'faq_cat',
-                        'field'    => 'id',
-                        'terms'    => array( $cat_id ),
-                        ),
-                    ),
+    if( ( $cat_id == '' ) || ( $cat_id == null ) ) :
+	    $args = array (
+	            'posts_per_page'        => -1,
+	            'post_type'             => 'faq',
+	            'p'                     => $id,
+	            'order' =>"DESC"
+	        );
+	else:
+		$args = array (
+	            'posts_per_page'        => -1,
+	            'post_type'             => 'faq',
+	            'p'                     => $id,
+	            'tax_query' => array(
+		                array(
+		                    'taxonomy' => 'faq_cat',
+		                    'field'    => 'id',
+		                    'terms'    => array( $cat_id ),
+		                    ),
+		                ),
 
-            'order'                 =>"DESC"
-        );
+	            'order' =>"DESC"
+	        );
+
+	endif;
 
     // Getting FAQs from WordPress Awesome FAQ plugin's Custom Post Type questions
     //$args = array( 'posts_per_page' => -1,  'post_type' => 'faq', 'order'=>"DESC");
