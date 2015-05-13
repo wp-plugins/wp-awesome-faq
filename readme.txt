@@ -51,9 +51,14 @@ Installation Video Tutorial:
 1. FAQ Posts lists
 2. Add New FAQ section- look and feel.
 3. New Feature Category added.
+4. Category FAQ Shortcode
 
 
 == Changelog ==
+= 1.6.0 =
+* FAQ conflict in same page raw paragraph showing problem fixed.
+* Category FAQ Screenshots added.
+
 = 1.5.0 =
 * Content Auto Paragraph problem fixed
 * Added specific Category Shortcode 
