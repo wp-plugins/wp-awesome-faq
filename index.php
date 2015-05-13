@@ -3,7 +3,7 @@
 Plugin Name: WP Awesome FAQ
 Plugin URI: http://jeweltheme.com/product/wp-awesome-faq-pro/
 Description: Accordion based Awesome WordPress FAQ Plugin
-Version: 1.5.0
+Version: 1.6.0
 Author: Liton Arefin
 Author URI: http://www.jeweltheme.com
 License: GPL2
@@ -71,7 +71,7 @@ function jeweltheme_wp_awesome_faq_post_type() {
 
 add_action( 'init', 'jeweltheme_wp_awesome_faq_post_type' );
 
-function jeweltheme_wp_faq_enqueue_scripts(){
+function jeweltheme_wp_awesome_faq_enqueue_scripts(){
      if(!is_admin()){
         wp_register_style('jeweltheme-jquery-ui-style',plugins_url('/jquery-ui.css', __FILE__ ));
         wp_enqueue_style('jeweltheme-jquery-ui-style');
@@ -81,10 +81,10 @@ function jeweltheme_wp_faq_enqueue_scripts(){
         wp_enqueue_script('jeweltheme-custom-js');
     }   
 }
-add_action( 'init', 'jeweltheme_wp_faq_enqueue_scripts' );
+add_action( 'init', 'jeweltheme_wp_awesome_faq_enqueue_scripts' );
 
 
-function jeweltheme_accordion_shortcode($atts, $content= null) { 
+function jeweltheme_wp_awesome_faq_shortcode($atts, $content= null) { 
     
     extract( shortcode_atts(
         array(
@@ -112,41 +112,31 @@ function jeweltheme_accordion_shortcode($atts, $content= null) {
             'order'                 =>"DESC"
         );
 
-    // Getting FAQs from WordPress Awesome FAQ plugin's Custom Post Type questions
-    //$args = array( 'posts_per_page' => -1,  'post_type' => 'faq', 'order'=>"DESC");
-
     $query = new WP_Query( $args );
-
-   // print_r($query);
 
     ob_start();
 
-
     global $faq;
 
+    $count = 0; 
+    $accordion = 'accordion-' . time() . rand();
+
     ?>
-    <div id="accordion">
-        <?php 
-            if( $query->have_posts() ) { while ( $query->have_posts() ) { $query->the_post();
-            // $terms = wp_get_post_terms(get_the_ID(), 'faq_cat' );
-            // $t = array();
-            // foreach($terms as $term) $t[] = $term->name;
-            // echo implode(' ', $t); $t = array();
-        ?>
+        <div class="accordion" id="<?php echo $accordion .  $count;?>">
+            <?php if( $query->have_posts() ) { while ( $query->have_posts() ) { $query->the_post(); ?>
 
-            <h3><a href=""><?php the_title();?></a></h3><div>
-            <?php if($image){ ?>
-                <img src="<?php echo $image;?>">
-            <?php } ?>
+                <h3><a href=""><?php the_title();?></a></h3><div>
+                <?php if($image){ ?>
+                    <img src="<?php echo $image;?>">
+                <?php } ?>
 
-                <?php the_content();?></div>    
+                    <?php the_content();?></div>    
 
-        <?php } //end while
-    } else{
-        echo "<p>No FAQ Items. Please add some Items</p>";
-        } ?>
-
-    </div>
+                <?php } //end while
+            } else{
+                echo "<p>No FAQ Items. Please add some Items</p>";
+                } ?>
+        </div>
     <?php
         //Reset the query
     wp_reset_query();
@@ -155,16 +145,16 @@ function jeweltheme_accordion_shortcode($atts, $content= null) {
         ob_end_clean(); // grab the buffer contents and empty the buffer
         return $output;
 }
-add_shortcode('faq', 'jeweltheme_accordion_shortcode');
+add_shortcode('faq', 'jeweltheme_wp_awesome_faq_shortcode');
 
 
 
 
 /* Display a notice that can be dismissed */
 
-add_action('admin_notices', 'jeweltheme_faq_admin_notice');
+add_action('admin_notices', 'jeweltheme_wp_awesome_faq_admin_notice');
 
-function jeweltheme_faq_admin_notice() {
+function jeweltheme_wp_awesome_faq_admin_notice() {
     global $current_user ;
         $user_id = $current_user->ID;
     if ( ! get_user_meta($user_id, 'jeweltheme_ignore_notice') ) {
@@ -173,10 +163,10 @@ function jeweltheme_faq_admin_notice() {
         echo "</p></div>";
     }
 }
-add_action('admin_init', 'jeweltheme_ignore');
+add_action('admin_init', 'jeweltheme_wp_awesome_faq_ignore');
 
 
-function jeweltheme_ignore() {
+function jeweltheme_wp_awesome_faq_ignore() {
     global $current_user;
         $user_id = $current_user->ID;
         if ( isset($_GET['jeweltheme_ignore']) && '0' == $_GET['jeweltheme_ignore'] ) {
@@ -189,10 +179,10 @@ function jeweltheme_ignore() {
 
 
 // Manage Category Shortcode Columns
-add_filter("manage_faq_cat_custom_column", 'jeweltheme_faq_cat_columns', 10, 3);
-add_filter("manage_edit-faq_cat_columns", 'jeweltheme_faq_cat_manage_columns'); 
+add_filter("manage_faq_cat_custom_column", 'jeweltheme_wp_awesome_faq_cat_columns', 10, 3);
+add_filter("manage_edit-faq_cat_columns", 'jeweltheme_wp_awesome_faq_cat_manage_columns'); 
  
-function jeweltheme_faq_cat_manage_columns($theme_columns) {
+function jeweltheme_wp_awesome_faq_cat_manage_columns($theme_columns) {
     $new_columns = array(
             'cb' => '<input type="checkbox" />',
             'name' => __('Name'),
@@ -205,7 +195,7 @@ function jeweltheme_faq_cat_manage_columns($theme_columns) {
 }
 
 
-function jeweltheme_faq_cat_columns($out, $column_name, $theme_id) {
+function jeweltheme_wp_awesome_faq_cat_columns($out, $column_name, $theme_id) {
     $theme = get_term($theme_id, 'faq_cat');
     switch ($column_name) {
         
