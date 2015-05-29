@@ -96,21 +96,30 @@ function jeweltheme_wp_awesome_faq_shortcode($atts, $content= null) {
     );
 
 
-            // WP_Query arguments
-    $args = array (
+    // WP_Query arguments
+    if( $cat_id == '' ) :
+        $args = array (
+            'posts_per_page'        => -1,
+            'post_type'             => 'faq',
+            'p'                     => $id,
+            'order' =>"DESC"
+            );
+    else:
+        $args = array (
             'posts_per_page'        => -1,
             'post_type'             => 'faq',
             'p'                     => $id,
             'tax_query' => array(
-                    array(
-                        'taxonomy' => 'faq_cat',
-                        'field'    => 'id',
-                        'terms'    => array( $cat_id ),
-                        ),
+                array(
+                    'taxonomy' => 'faq_cat',
+                    'field'    => 'id',
+                    'terms'    => array( $cat_id ),
                     ),
+                ),
 
-            'order'                 =>"DESC"
-        );
+            'order' =>"DESC"
+            );
+    endif;
 
     $query = new WP_Query( $args );
 
