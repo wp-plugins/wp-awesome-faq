@@ -1,10 +1,10 @@
 === WP Awesome FAQ Plugin ===
 Contributors: litonice13, jwthemeltd
-Donate link: http://liton-online.com/donate
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=jwthemeltd@gmail.com&lc=US&item_name=Donate&currency_code=USD&bn=PP-DonationsBF:btn_donate_SM.gif:NonHostedGuest
 Tags: WordPress, WordPress FAQ, Frequently asked questions,WordPress Plugin
-Requires at least: 3.8
-Tested up to: 4.2.2
-Stable tag: 1.8.0
+Requires at least: 4.0
+Tested up to: 4.2.4
+Stable tag: 1.9.0
 
 	
 Best WordPress FAQ Plugin integrated with Custom Post Type. WP Awesome FAQ comes with accordion based jQuery UI. 
@@ -55,8 +55,11 @@ Installation Video Tutorial:
 
 
 == Changelog ==
+= 1.9.0 =
+* Donate URL Changed
+
 = 1.8.0 =
-* Category Shortcode On same page displaying as simple text problem fixed.= 1.8.0 =
+* Category Shortcode On same page displaying as simple text problem fixed.
 
 = 1.7.0 =
 * Fixed CSS Issue with different Themes.
