@@ -3,7 +3,7 @@
 Plugin Name: WP Awesome FAQ
 Plugin URI: http://jeweltheme.com/product/wp-awesome-faq-pro/
 Description: Accordion based Awesome WordPress FAQ Plugin
-Version: 2.0.0
+Version: 3.0.2
 Author: Liton Arefin
 Author URI: http://www.jeweltheme.com
 License: GPL2
@@ -221,3 +221,50 @@ function jeweltheme_wp_awesome_faq_cat_columns($out, $column_name, $theme_id) {
     }
     return $out;    
 }
+
+
+
+
+
+
+add_action('admin_head', 'jeweltheme_wp_awesome_faq_tinymce_button');
+
+function jeweltheme_wp_awesome_faq_tinymce_button() {
+    global $typenow;
+    
+    // check user permissions
+    if ( !current_user_can('edit_posts') && !current_user_can('edit_pages') ) {
+    return;
+    }
+    
+    // verify the post type
+    if( ! in_array( $typenow, array( 'post', 'page' ) ) )
+        return;
+
+    // check if WYSIWYG is enabled
+    if ( get_user_option('rich_editing') == 'true') {
+        add_filter("mce_external_plugins", "jeweltheme_wp_awesome_faq_tinymce_plugin");
+        add_filter('mce_buttons', 'jeweltheme_wp_awesome_faq_register_tinymce_button');
+    }
+}
+
+function jeweltheme_wp_awesome_faq_tinymce_plugin($plugin_array) {
+    $plugin_array['jeweltheme_faq_button'] = plugins_url( '/editor-button.js', __FILE__ ); 
+    return $plugin_array;
+}
+
+function jeweltheme_wp_awesome_faq_register_tinymce_button($buttons) {
+   array_push($buttons, "jeweltheme_faq_button");
+   return $buttons;
+}
+
+function admin_inline_js(){ ?>
+    <style>
+        i.mce-ico.mce-i-faq-icon {
+            background-image: url('<?php echo  plugins_url( 'icon.png', __FILE__ );?>');
+        }
+    </style>
+<?php }
+add_action( 'admin_print_scripts', 'admin_inline_js' );
+
+

@@ -68,10 +68,9 @@
 
 /* states and images */
 .ui-icon {
-	display: block;
-	text-indent: -99999px;
-	overflow: hidden;
 	background-repeat: no-repeat;
+	width: 26px;
+	height: 26px;
 }
 
 
@@ -87,32 +86,46 @@
 	height: 100%;
 }
 .ui-accordion .ui-accordion-header {
+	background: #ffffff;
+	border: 1px solid #e1e1e1;
+	border-radius: 0;
 	display: block;
 	cursor: pointer;
+	font-size: 20px !important;
 	position: relative;
 	margin-top: 2px;
+	margin-bottom: 0;
 	padding: .5em .5em .5em .7em;
 	min-height: 0; /* support: IE7 */
 }
+.ui-accordion-header-active,
+.ui-accordion-content-active {
+	background: #fcfcfc !important;
+	color: #666666 !important;
+} 
 .ui-accordion .ui-accordion-icons {
-	padding-left: 2.2em;
+	padding-left: 1em;
 }
 .ui-accordion .ui-accordion-noicons {
 	padding-left: .7em;
 }
 .ui-accordion .ui-accordion-icons .ui-accordion-icons {
-	padding-left: 2.2em;
+	padding-left: 1.2em;
 }
 .ui-accordion .ui-accordion-header .ui-accordion-header-icon {
 	position: absolute;
-	left: .5em;
+	right: .5em;
 	top: 50%;
-	margin-top: -8px;
+	margin-top: -13px;
 }
 .ui-accordion .ui-accordion-content {
-	padding: 1em 2.2em;
+	padding: 1em 1.2em;
 	border-top: 0;
-	overflow: auto;
+	overflow: visible;
+}
+.ui-accordion .ui-accordion-content p {
+	font-size: 16px;
+	margin: 0 !important;
 }
 .ui-autocomplete {
 	position: absolute;
@@ -800,7 +813,8 @@ body .ui-tooltip {
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #aaaaaa;
+	border: 1px solid #e1e1e1;
+	border-radius: 0;
 	background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
 	color: #222222;
 }
@@ -830,8 +844,12 @@ body .ui-tooltip {
 .ui-state-default a,
 .ui-state-default a:link,
 .ui-state-default a:visited {
+	border: none;
 	color: #555555;
 	text-decoration: none;
+}
+.ui-state-default a:focus {
+	outline: 0;
 }
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
@@ -924,33 +942,20 @@ body .ui-tooltip {
 ----------------------------------*/
 
 /* states and images */
-.ui-icon {
-	width: 16px;
-	height: 16px;
+
+.ui-state-default .ui-icon:before {
+	content: "\f347"; /* dashicons-arrow-down-alt2 */
 }
-.ui-icon,
-.ui-widget-content .ui-icon {
-	background-image: url(images/ui-icons_222222_256x240.png);
+.ui-state-active .ui-icon:before {
+	content: "\f343"; /* dashicons-arrow-up-alt2 */
 }
-.ui-widget-header .ui-icon {
-	background-image: url(images/ui-icons_222222_256x240.png);
-}
-.ui-state-default .ui-icon {
-	background-image: url(images/ui-icons_888888_256x240.png);
-}
-.ui-state-hover .ui-icon,
-.ui-state-focus .ui-icon {
-	background-image: url(images/ui-icons_454545_256x240.png);
-}
-.ui-state-active .ui-icon {
-	background-image: url(images/ui-icons_454545_256x240.png);
-}
-.ui-state-highlight .ui-icon {
-	background-image: url(images/ui-icons_2e83ff_256x240.png);
-}
-.ui-state-error .ui-icon,
-.ui-state-error-text .ui-icon {
-	background-image: url(images/ui-icons_cd0a0a_256x240.png);
+.ui-state-default .ui-icon:before,
+.ui-state-default .ui-icon:after {
+	font-family: 'dashicons';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 13px;
 }
 
 /* positioning */
@@ -1178,5 +1183,6 @@ body .ui-tooltip {
 
 /* Add This Style */
 div.ui-accordion-content .at-above-post-page.addthis_default_style.addthis_toolbox {
-    display: none;
+	display: none;
 }
+

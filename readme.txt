@@ -3,8 +3,8 @@ Contributors: litonice13, jwthemeltd
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=jwthemeltd@gmail.com&lc=US&item_name=Donate&currency_code=USD&bn=PP-DonationsBF:btn_donate_SM.gif:NonHostedGuest
 Tags: WordPress, WordPress FAQ, Frequently asked questions,WordPress Plugin
 Requires at least: 4.0
-Tested up to: 4.2.4
-Stable tag: 1.9.0
+Tested up to: 4.3.1
+Stable tag: 3.0.1
 
 	
 Best WordPress FAQ Plugin integrated with Custom Post Type. WP Awesome FAQ comes with accordion based jQuery UI. 
@@ -16,7 +16,7 @@ No need extra configurations for WP Awesome FAQ Plugin. WP Awesome FAQ Plugin al
 * WP Awesome FAQ Plugin includes- Title, Description.
 * No Post Description Limits.
 * Category Shortcode based FAQ (very much requested feature !!!).
-* Window resize auto height.
+* Window Resize Auto Height.
 * Many more settings are comming!!!
 
 Installation Video Tutorial:
@@ -49,12 +49,22 @@ Installation Video Tutorial:
 == Screenshots ==
 
 1. FAQ Posts lists
-2. Add New FAQ section- look and feel.
-3. New Feature Category added.
-4. Category added Shortcode FAQ's
+2. Front End FAQ Output
+3. FAQ's by Category
+4. Category added Shortcode FAQ's by ID
+5. Editor Button FAQ
+6. Popup Editor FAQ Button 
 
 
 == Changelog ==
+
+= 2.0.0 =
+* FAQ Design Changed
+* Editor FAQ Button Added
+* Category FAQ's on Editor by ID added
+* CSS bugs fixed
+
+
 = 1.9.0 =
 * Donate URL Changed
 
